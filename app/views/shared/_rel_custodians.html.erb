@@ -1,0 +1,10 @@
+<% if collection.present? %>
+  <h2><%= t('custodians') %></h2>
+  <ul>
+  <% collection.each do |custodian| %>
+    <li>
+      <%= link_to "#{custodian.preferred_name.name}", custodian_path(custodian) %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>

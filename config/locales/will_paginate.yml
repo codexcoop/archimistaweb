@@ -1,0 +1,39 @@
+# See: https://github.com/mislav/will_paginate/wiki/I18n
+en:
+  will_paginate:
+    previous_label: "&#8592; Previous"
+    next_label: "Next &#8594;"
+    page_gap: "&hellip;"
+
+    page_entries_info:
+      single_page:
+        zero:  "No result found" # "No %{model} found"
+        one:   "Displaying 1 result"
+        other: "Displaying all %{count} results"
+      single_page_html:
+        zero:  "No result found"
+        one:   "Displaying <b>1</b> result"
+        other: "Displaying <b>all&nbsp;%{count}</b> results"
+
+      multi_page: "Displaying results %{from} - %{to} of %{count} in total"
+      multi_page_html: "Displaying results <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>#%{count}#</b> in total"
+
+it:
+  will_paginate:
+    previous_label: "&#8592;"
+    next_label: "&#8594;"
+    page_gap: "&hellip;"
+
+    page_entries_info:
+      single_page:
+        zero:  "Nessun risultato" # "No %{model} found"
+        one:   "<b>1</b> risultato"
+        other: "%{count} risultati"
+      single_page_html:
+        zero:  "Nessun risultato"
+        one:   "<b>1</b> risultato"
+        other: "<b>%{count}</b> risultati"
+
+      multi_page: "Risultati %{from} - %{to} di %{count} totali"
+      multi_page_html: "Risultati <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>#%{count}#</b> totali"
+

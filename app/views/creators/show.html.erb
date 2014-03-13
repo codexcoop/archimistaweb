@@ -1,0 +1,123 @@
+<% title @creator.display_name %>
+
+<h1>
+  <%= @creator.display_name %>
+  <span>(<%= @creator.preferred_event.try(:full_display_date_with_place) || 's.d.' %>)</span>
+</h1>
+
+<p>
+  <strong><%= t('creator_type') %></strong>: <%= show_value(@creator.creator_type, "t") %>
+</p>
+
+<% if @creator.is_corporate? %>
+  <p>
+    <% if @creator.creator_corporate_type.present? %>
+    <strong><%= t('creator_corporate_type') %></strong>:
+    <%= @creator.creator_corporate_type.corporate_type.capitalize %>
+    <% end %>
+  </p>
+<% end %>
+
+<% if @creator.other_names.present? %>
+  <p><strong><%= t('other_names')%></strong>:
+  <% if @creator.other_names.count > 1 %>
+    <br>
+    <ul>
+      <% @creator.other_names.each do |other_name| %>
+      <li>
+        <%#= show_item(other_name.qualifier, ["",""]:, 't') %>
+        <%= show_item(other_name.name) %>
+        <%= show_item(other_name.note, ["[","]"]) %>
+      </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <% @creator.other_names.each do |other_name| %>
+      <%= show_item(other_name.name) %>
+      <%= show_item(other_name.note, ["[","]"]) %>
+    <% end %>
+  <% end %>
+</p>
+<% end %>
+
+<% if @creator.is_corporate? %>
+  <% if @creator.creator_legal_statuses.present? %>
+  <p>
+    <strong><%= t('creator_legal_status')%></strong>:
+    <% @creator.creator_legal_statuses.each do |cls| %>
+      <%= show_item(cls.legal_status, ['', ''], "t") %> <%= show_item(cls.note, ["[","]"]) %></li>
+    <% end %>
+  </p>
+  <% end %>
+
+  <% if @creator.residence.present? %>
+    <p><strong><%= t('residence') %></strong>: <%= show_value(@creator.residence) %></p>
+  <% end %>
+<% end %>
+
+<% if @creator.creator_urls.present? %>
+  <p>
+  <strong><%= t('creator_urls')%></strong>
+  <ul>
+    <% @creator.creator_urls.each do |cu_name| %>
+      <li><%= show_item(cu_name.url) %> <%= show_item(cu_name.note, ["[","]"]) %></li>
+    <% end %>
+  </ul>
+  </p>
+<% end %>
+
+<% if @creator.creator_identifiers.present? %>
+  <p>
+  <strong><%= t('creator_identifiers')%></strong>
+  <ul>
+    <% @creator.creator_identifiers.each do |ci_name| %>
+    <li>
+      <%= show_item(ci_name.identifier) %>
+      <%= raw show_item(ci_name.identifier_source, ["<span>(",")</span>"]) %>
+      <%= show_item(ci_name.note, ["[","]"]) %>
+    </li>
+    <% end %>
+  </ul>
+  </p>
+<% end %>
+
+<% if @creator.abstract.present? %>
+<p>
+  <strong><%= t('abstract') %></strong><br>
+  <%= show_value(raw textilize(@creator.abstract)) %>
+</p>
+<% end %>
+
+<% if @creator.history.present? %>
+<p>
+  <strong><%= t('history') %></strong><br>
+  <%= show_value(raw textilize(@creator.history)) %>
+</p>
+<% end %>
+
+<% if @creator.creator_activities.present? %>
+<p>
+  <strong><%= t('activities')%></strong>
+  <ul>
+    <% @creator.creator_activities.each do |creator_activity| %>
+    <li>
+      <%= show_item(creator_activity.activity) %>
+      <%= show_item(creator_activity.note, ["[","]"]) %>
+      </li>
+    <% end %>
+  </ul>
+</p>
+<% end %>
+
+<%= render 'shared/rel_fonds', :collection => @creator.fonds %>
+
+<% if @creator.is_corporate? %>
+  <%= render 'shared/rel_institutions', :collection => @creator.institutions %>
+<% end %>
+
+<%= render 'shared/rel_creator_creators', :collection => @creator.rel_creator_creators %>
+<%= render "shared/sources", :collection => @creator.sources %>
+<%= render 'shared/editors', :collection => @creator.creator_editors %>
+
+<%= permalink @creator %>
+

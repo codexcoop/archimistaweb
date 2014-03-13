@@ -1,0 +1,165 @@
+<% title @custodian.display_name %>
+
+<h1><%= @custodian.display_name %></h1>
+
+<% if @custodian.legal_status.present? %>
+<p>
+  <strong><%= t('legal_status')%></strong>:
+  <%= show_value(@custodian.legal_status, "t") %>
+</p>
+<% end %>
+
+<% if @custodian.custodian_type.present? %>
+<p>
+  <strong><%= t('custodian_macro_type') %></strong>:  
+  <%= @custodian.custodian_type.custodian_type.capitalize %>
+</p>
+<% end %>
+
+
+<% if @custodian.other_names.present? %>
+<p>
+  <strong><%= t('other_names')%></strong>:
+  <ul>
+    <% @custodian.other_names.each do |other_name| %>
+      <li>
+          <%= show_item(other_name.name) %> <%= show_item(t(other_name.qualifier), ["<span>(",")</span>"]) %>
+          <%= show_item(other_name.note, ["[","]"]) %>
+      </li>
+    <% end %>
+  </ul>
+</p>
+<% end %>
+
+<% if @custodian.history.present? %>
+<p>
+  <strong><%= t('custodian_history') %></strong>:
+  <%= show_value(raw textilize(@custodian.history)) %>
+</p>
+<% end %>
+
+<% if @custodian.custodian_contacts.present? %>
+<p>
+  <strong><%= t('custodian_contact_type')%></strong>:
+    <ul>
+      <% @custodian.custodian_contacts.each do |custodian_contacts| %>
+      <li>
+        <% if custodian_contacts.contact_type == 'email' %>
+           <%= show_value(custodian_contacts.contact_type, "t") %>: 
+          <%= link_to show_item(custodian_contacts.contact), 'mailto:' + show_item(custodian_contacts.contact) %>
+        <% else %>
+          <%= show_value(custodian_contacts.contact_type, "t") %>:
+          <%= show_item(custodian_contacts.contact) %>
+          <%= show_item(custodian_contacts.contact_note, ["[","]"]) %>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+</p>
+<% end %>
+
+<% if @custodian.contact_person.present? %>
+<p>
+  <strong><%= t('contact_person') %></strong>:
+  <%= show_value(@custodian.contact_person) %>
+</p>
+<% end %>
+
+<% if @custodian.custodian_owners.present? %>
+<p>
+  <strong><%= t('custodian_owners') %></strong>:
+  <ul>
+    <% @custodian.custodian_owners.each do |custodian_owner| %>
+      <li><%= show_item(custodian_owner.owner) %></li>
+    <% end %>
+  </ul>
+</p>
+<% end %>
+
+<% if @custodian.custodian_urls.present? %>
+<p>
+  <strong><%= t('custodian_urls') %></strong>:
+  <ul>
+    <% @custodian.custodian_urls.each do |cu_name| %>
+      <li><%= link_to show_item(cu_name.url), show_item(cu_name.url)  %> <%= show_item(cu_name.note, ["[","]"]) %></li>
+    <% end %>
+  </ul>
+</p>
+<% end %>
+
+<% if @custodian.custodian_identifiers.present? %>
+<p>
+  <strong><%= t('custodian_identifiers') %></strong>:
+  <ul>
+    <% @custodian.custodian_identifiers.each do |ci_name| %>
+      <li>
+        <%= show_item(ci_name.identifier) %>
+        <%= show_item(ci_name.identifier_source, ["(",")"]) %>
+        <%= show_item(ci_name.note, ["[","]"]) %>
+      </li>
+    <% end %>
+  </ul>
+</p>
+<% end %>
+
+<% if @custodian.holdings.present? %>
+<p>
+   <strong><%= t('holdings') %></strong>:
+   <%= show_value(raw textilize(@custodian.holdings)) %>
+</p>
+<% end %>
+
+<% if @custodian.collecting_policies.present? %>
+<p>
+  <strong><%= t('collecting_policies') %></strong>:
+  <%= show_value(raw textilize(@custodian.collecting_policies)) %>
+</p>
+<% end %>
+
+<% if @custodian.administrative_structure.present? %>
+<p>
+  <strong><%= t('administrative_structure') %></strong>:
+  <%= show_value(raw textilize(@custodian.administrative_structure)) %>
+</p>
+<% end %>
+
+<% if @custodian.accessibility.present? %>
+<p>
+  <strong><%= t('accessibility') %></strong>:
+  <%= show_value(raw textilize(@custodian.accessibility)) %>
+</p>
+<% end %>
+
+<% if @custodian.services.present? %> 
+<p>
+  <strong><%= t('services') %></strong>:
+  <%= show_value(raw textilize(@custodian.services)) %>
+</p>
+<% end %>
+
+<h2 class="section"><%= t('buildings') %></h2>
+
+<% if @custodian.custodian_buildings.present? %> 
+  <% @custodian.custodian_buildings.each do |custodian_building| %>
+  <p>
+  <%= raw show_item(custodian_building.custodian_building_type.capitalize, ["<strong>", "</strong> <br>"]) %>
+  
+  <% if custodian_building.description.present? %>
+    <%= show_value(raw textilize(custodian_building.description)) %>
+  <% end %>
+  
+  <strong><%= t('address') %></strong>:<br>
+  <%= raw show_item(custodian_building.name, ["", "<br>"]) %>
+  <%= raw show_item(custodian_building.address, ["", "<br>"]) %>
+  <%= raw show_item(custodian_building.postcode) %>   <%= raw show_item(custodian_building.city, ["", "<br>"]) %>
+  <%= raw show_item(custodian_building.state) %> <%= show_item(custodian_building.country) %>
+</p>
+<% end %>
+
+<%= render 'shared/rel_fonds', :collection => @custodian.fonds %>
+<%= render "shared/sources", :collection => @custodian.sources %>
+<%= render 'shared/editors', :collection => @custodian.custodian_editors %>
+<% end %>
+
+<%= permalink @custodian %>
+

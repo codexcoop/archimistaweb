@@ -1,0 +1,12 @@
+<% content_for :content do %>
+  <div class="row">
+    <div class="span3">
+      <%= render "shared/sidebar" %>
+    </div>
+    <div class="span9">
+      <%= yield %>
+    </div>
+  </div>
+<% end %>
+
+<%= render :template => 'layouts/application' %>

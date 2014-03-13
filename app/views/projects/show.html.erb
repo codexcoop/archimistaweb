@@ -1,0 +1,63 @@
+<% title @project.name %>
+
+<h1><%= @project.name %> <span>(<%= @project .try(:display_date) || 's.d.' %>)</span></h1>
+
+<% if @project.project_type.present? %>
+  <p>
+    <strong><%= t('project_type') %></strong>: <%= @project.project_type %>
+    <% if @project.status.present? %>
+    <%= " - " + @project.status + "" %>
+    <% end %>
+  </p>
+<% end %>
+
+<%= raw textilize(@project.description) if @project.description.present? %>
+
+<% if @project.note.present? %>
+  <p>
+    <strong><%= t('note') %></strong>
+    <%= raw textilize(@project.note) %>
+  </p>
+<% end %>
+
+<% if @project.project_urls.present? %>
+  <p>
+    <strong><%= t('project_urls') %></strong>
+    <ul>
+    <% @project.project_urls.each do |project_url| %>
+      <li>
+        <%= link_to "#{project_url.url}", project_url.url %>
+        <%= show_item(project_url.note, ["[", "]"]) %>
+      </li>
+    </ul>
+  <% end %>
+<% end %>
+
+<% if @project.project_managers.present? %>
+<p><strong><%= t('project_managers')%></strong>
+  <ul>
+  <% @project.project_managers.each do |project_manager| %>
+    <li>
+      <%= project_manager.credit_name %> 
+      <%= show_item(project_manager.qualifier, ["[", "]"]) %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+
+<% if @project.project_stakeholders.present? %>
+  <p><strong><%= t('project_stakeholders')%></strong>
+  <ul>
+    <% @project.project_stakeholders.each do |project_stakeholder| %>
+    <li>
+      <%= project_stakeholder.credit_name %> 
+      <%= show_item(project_stakeholder.qualifier, ["[", "]"]) %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render 'shared/rel_fonds', :collection => @project.fonds %>
+
+<%= permalink @project %>
+

@@ -1,0 +1,21 @@
+<% title t('institutions') %>
+
+<h1><%= t('institutions') %></h1>
+<% if @institutions.size > 0 %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="span12"><%= t('institutions_name') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @institutions.each do |institution| %>
+        <tr>
+          <td><%= link_to institution.name, institution_path(institution) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Non sono presenti schede profilo istituzionale.</p>
+<% end %>

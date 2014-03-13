@@ -1,0 +1,27 @@
+<title><%= @fond.name %></title>
+
+<% if @units.size > 0 %>
+  <table id="units-list" class="table table-striped table-condensed">
+    <col style="width: auto" />
+    <col />
+    <tbody>
+      <% @units.each_with_index do |unit, index| %>
+        <% if (@unit.present? && unit.id == @unit.id) || (@unit.nil? && index == 0) %>
+          <tr class="info">
+        <% else %>
+          <tr>
+        <% end %>
+          <td><b><%= unit.display_sequence_number_from_hash(@sequence_numbers) %></b></td>
+          <td>
+            <%= raw "&mdash;" * unit.ancestry_depth %>
+            <%= link_to unit.formatted_title, fond_unit_path(unit.fond_id, unit), {:class => 'load-unit', 'data-id' => unit.id, 'data-fond-id' => unit.fond_id, :id =>  "unit-#{unit.id}"} %><br />
+            (<%= unit.preferred_event.try(:full_display_date) || 's.d.' %>)<br />
+            <%= unit.reference_number %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Non sono presenti unità archivistiche per questo livello.</p>
+<% end %>

@@ -1,0 +1,22 @@
+<% title t('document_forms') %>
+
+<h1><%= t('document_forms') %></h1>
+
+<% if @document_forms.size > 0 %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="span12"><%= t('document_forms_name') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @document_forms.each do |document_form| %>
+        <tr class="<%= cycle("odd", "even") %>">
+          <td><%= link_to document_form.name, document_form_path(document_form) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Non sono presenti schede profilo documentario.</p>
+<% end %>

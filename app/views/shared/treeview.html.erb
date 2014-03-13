@@ -1,0 +1,58 @@
+<% title @unit ? @unit.name : @fond.name %>
+<%# OPTIMIZE: se si può, treeview dovrebbe diventare layout %>
+<div class="row-fluid">
+<div id="treeview-content" class="span12">
+  <div id="fonds-tree-wrapper" class="span3">
+    <div id="fonds-tree">
+      <%# filled by jsTree %>
+    </div>
+    <div id="tree-controls">
+      <span id="handle" class="ui-resizable-handle">|||</span>
+    </div>
+  </div>
+
+  <div id="main">
+    <div id="main-wrapper">
+      <ul id="tabs" class="nav nav-tabs">
+        <li class="<%= active_if controller_name, "fonds" %>">
+          <a id="tab-fonds" href="<%= fond_path(@fond) %>"><%= t('description') %></a>
+        </li>
+        <% href = @units.size.zero? ? "#" : fond_unit_path(@fond, @units.first) %>
+        <li class="<%= active_if controller_name, "units" %>">
+          <a id="tab-units" href="<%= href %>"><%= t('units') %></a>
+        </li>
+      </ul>
+      <div class="tab-content">
+
+        <div class="tab-pane<%= active_if controller_name, "fonds" %>" id="description">
+          <% if controller_name == 'fonds' %>
+            <div id="main-fond">
+              <div id="fonds-wrapper">
+                <%= render "fonds/description", :object => @fond %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="tab-pane<%= active_if controller_name, "units" %>" id="units">
+          <% if controller_name == 'units' %>
+            <div id="units-tree-wrapper" class="span4">
+              <div id="units-tree">
+                <%= render "units/list", :object => @units if @units %>
+              </div>
+            </div>
+
+            <div>
+              <div id="main-unit" class="span8">
+                <div id="units-wrapper">
+                  <%= render "units/description", :object => @unit if @unit %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

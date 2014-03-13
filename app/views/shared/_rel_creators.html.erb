@@ -1,0 +1,10 @@
+<% if collection.present? %>
+  <h2><%= t('creators') %></h2>
+  <ul>
+  <% collection.each do |creator| %>
+    <li><%= link_to "#{creator.preferred_name.name}", creator_path(creator) %>
+      <%= creator.preferred_event.full_display_date if creator.preferred_event %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>

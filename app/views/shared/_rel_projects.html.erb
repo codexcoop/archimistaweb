@@ -1,0 +1,10 @@
+<% if collection.present? %>
+  <h2><%= t('projects') %></h2>
+  <ul>
+  <% collection.each do |project| %>
+    <li><%= link_to "#{project.name}", project_path(project) %>
+     <%= "(" + project .try(:display_date)  + ")"  %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>

@@ -1,0 +1,25 @@
+<% title t('custodians') %>
+
+<h1><%= t('custodians') %></h1>
+<% if @custodians.size > 0 %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= t('custodian_name') %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @custodians.each do |custodian| %>
+      <tr class="<%= cycle("odd", "even") %>">
+        <td>
+          <%= link_to custodian.name, custodian %><%= ", #{custodian.custodian_headquarter.city}" if custodian.custodian_headquarter.present? %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= bs_paginate @custodians %>
+<% else %>
+  <p>Non sono presenti schede soggetto conservatore.</p>
+<% end %>
+

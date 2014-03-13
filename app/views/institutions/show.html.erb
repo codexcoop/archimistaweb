@@ -1,0 +1,17 @@
+<% title @institution.name %>
+
+<h1><%= @institution.name %></h1>
+
+<%= raw textilize(@institution.description) %>
+
+<% if @institution.note.present? %>
+  <strong><%= t('document_forms_note') %></strong>: <br />
+  <%= @institution.note  %>
+<% end %>
+
+<h2><%= t('rel_creators') %></h2>
+
+<%= render 'shared/rel_creators', :collection => @institution.creators %>
+<%= render 'shared/editors', :collection => @institution.institution_editors %>
+
+<%= permalink @institution %>

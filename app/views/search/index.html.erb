@@ -1,0 +1,116 @@
+<% title "Ricerca nel sito" %>
+<%# OPTIMIZE: migliorare leggibilità %>
+<div class="well">
+  <%= form_tag search_path, :method => "get", :class => "form-inline", :style => "margin: 0;" do %>
+    <%= text_field_tag :q, params[:q], :class => "span3", :placeholder => "Termini di ricerca" %>
+    <%= text_field_tag :start, params[:start], :class => "input-small", :placeholder => "Anno iniziale" %>
+    <%= text_field_tag :end, params[:end], :class => "input-small", :placeholder => "Anno finale" %>
+    <label class="checkbox muted">
+      <%= check_box_tag "dob", value = "1", checked = params[:dob].present? %>
+      con oggetti digitali
+    </label>
+    <%= button_tag "Cerca", :name => nil, :id => 'search-button', :class => "btn", :style => "width: 80px; margin-left: 10px;" %>
+  <% end %>
+</div>
+
+<% if @results.present? %>
+<div class="row">
+
+  <div id="ts-filters" class="span3">
+    <h2>Filtra risultati</h2>
+    <ul class="ts-filters-box unstyled">
+      <% @counts.each do |klass, count| %>
+        <% unless count.zero? %>
+          <li><%= filter_by_scope(klass) %> <em>(<%= number_with_delimiter(count) %>)</em>
+            <%= link_to "[ X ]", search_path(params.reject {|k, v| rejectable_keys.include?(k)}) if params[:scope] == klass.singularize %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <% if params[:scope] && params[:scope] == "unit" %>
+      <h2>Complessi archivistici</h2>
+      <ul class="ts-filters-box unstyled">
+        <%= units_facets @facets %>
+        <% if @other_facets.present? %>
+          <li><a href="#" data-toggle="modal" data-target="#other-facets">altro</a></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <p id="ts-filters-close"><%= remove_filters %></p>
+  </div>
+
+  <div class="span9">
+    <div id="ts-info" class="clearfix">
+      <div class="pull-left"><%= display_page_entries_info @results %></div>
+      <div class="pull-right">Ordina per: <%= switch_order(params[:sort]) %></div>
+    </div>
+
+      <% @results.each do |result| %>
+        <% klass = result.class.name.downcase %>
+        <% absolute_url = url_builder(result) %>
+        <% digital_object = result.first_digital_object %>
+        <div class="ts-result media">
+          <% if digital_object.present? %>
+            <div class="thumb">
+              <% digital_object.is_image? %>
+              <%= link_to (image_tag(digital_object.asset(:thumb), :class => 'media-object')), absolute_url %>
+            </div>
+          <% end %>
+          <div class="label"><%= t(klass) %></div>
+          <% case klass %>
+          <% when 'unit' %>
+            <p class="title">
+              <%= raw "&mdash;" * result.ancestry_depth %>
+              <%= link_to result.excerpts.title.html_safe, fond_unit_path(result.fond_id, result) %>
+              <span class="events">
+                (<%= result.preferred_event.try(:full_display_date) || 's.d.' %>)
+              </span>
+            </p>
+            <p class="path"><%= @paths[result.fond_id].html_safe %></p>
+            <p class="snippet"><%= result.excerpts.content.html_safe %></p>
+          <% when 'fond' %>
+            <p class="title">
+              <%= link_to result.excerpts.name.html_safe, fond_path(result) %>
+              <span class="events">
+                (<%= result.preferred_event.try(:full_display_date) || 's.d.' %>)
+              </span>
+              <span class="muted"><%= "(#{result.fond_type})" if result.fond_type.present? %></span>
+            </p>
+            <p class="path"><%= @paths[result.id].html_safe if result.is_root? == false %></p>
+            <p class="snippet"><%= result.excerpts.description.html_safe %></p>
+          <% when 'creator' %>
+            <p class="title">
+              <%= link_to result.excerpts.display_name.html_safe, creator_path(result) %>
+              <span class="events">
+                (<%= result.preferred_event.try(:full_display_date) || 's.d.' %>)
+              </span>
+            </p>
+            <p class="snippet"><%= result.excerpts.history.html_safe %></p>
+          <% when 'custodian' %>
+            <p class="title">
+              <%= link_to result.excerpts.display_name.html_safe, custodian_path(result) %>
+            </p>
+          <% end %>
+        </div>
+      <% end %>
+      <%= bs_paginate @results %>
+  </div>
+<% else %>
+  <p class="text-warning">Nessun risultato trovato per i termini di ricerca.</p>
+  <p>Prova una ricerca meno specifica.</p>
+<% end %>
+
+<% if @other_facets.present? %>
+  <div id="other-facets" class="modal hide fade">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3>Altri <%= t('fonds').downcase %> </h3>
+    </div>
+    <div class="modal-body">
+      <ul class="ts-filters-box unstyled">
+        <%= units_facets @other_facets %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+

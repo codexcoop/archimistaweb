@@ -1,0 +1,44 @@
+<div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+  <div class="span6">
+    <p><strong><%= Settings.site_name %></strong> presenta un campione di descrizioni archivistiche prodotte con <%= link_to "Archimista", "http://www.archimista.it" %>.
+    Il sito ha finalità dimostrative e intende dare un'idea delle possibilità di presentazione e ricerca offerte da <%= link_to "Archimista Web", "https://github.com/codexcoop/archimistaweb" %>.</p>
+    <p>Puoi consultare le schede descrittive dei <em>Complessi archivistici</em>, fino al livello delle <em>Unità</em>, dei <em>Soggetti produttori</em> e dei <em>Soggetti conservatori</em>, nonché, se presenti, di <em>Profili istituzionali</em>, <em>Profili documentari</em> e <em>Progetti</em>. A titolo di esempio sono consultabili le riproduzioni digitali di circa 200 unità archivistiche.</p>
+    <p>È inoltre disponibile una funzionalità di ricerca testuale nelle principali schede descrittive (<em>Complessi</em>, <em>Unità</em>, <em>Soggetti produttori</em> e <em>conservatori</em>).<br>
+    I risultati della ricerca possono essere raffinati per estremi cronologici, tipologia di scheda e presenza di oggetti digitali.</p>
+    <p>Archimista Web è un'applicazione open source sviluppata da Codex Società Cooperativa su incarico del Politecnico di Milano.
+    Per maggiori informazioni sulle responsabilità, leggi la pagina <%= link_to "Credits", credits_path %>.</p>
+  </div>
+  <div class="span5 offset1">
+    <%= render "carousel" %>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom: 20px;">
+  <div class="span4">
+    <h2><%= t('fonds') %></h2>
+    <ul>
+      <% @fonds.each do |fond| %>
+      <li><%= link_to fond.name, fond_path(fond) %></li>
+      <% end %>
+    </ul>
+    <p><small>Vedi tutti: <%= link_to "#{@fonds_count} #{t('fonds').downcase} »", fonds_path %></small></p>
+  </div>
+  <div class="span4">
+    <h2><%= t('creators') %></h2>
+    <ul>
+      <% @creators.each do |creator| %>
+      <li><%= link_to creator.name, creator_path(creator) %></li>
+      <% end %>
+    </ul>
+    <p><small>Vedi tutti: <%= link_to "#{@creators_count} #{t('creators').downcase} »", creators_path %></small></p>
+  </div>
+  <div class="span4">
+    <h2><%= t('custodians') %></h2>
+    <ul>
+      <% @custodians.each do |custodian| %>
+      <li><%= link_to custodian.name, custodian_path(custodian) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+

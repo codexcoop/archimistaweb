@@ -1,0 +1,25 @@
+<% title t('fonds') %>
+
+<h1><%= t('fonds') %></h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= t('name') %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @fonds.each do |fond| %>
+    <tr class="<%= cycle("odd", "even") %>">
+      <td><%= link_to fond.name, fond_path(fond) %>
+        <% if fond.fond_type.present? %>
+          <span class="muted">(<%= fond.fond_type %>)</span>
+        <% end %><br />
+        <%= fond.preferred_event.try(:full_display_date) %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= bs_paginate @fonds %>
+

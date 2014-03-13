@@ -1,0 +1,15 @@
+<% title @document_form.name %>
+
+<h1><%= @document_form.name %></h1>
+
+<%= raw textilize(@document_form.description) %>
+
+<% if @document_form.note.present? %>
+  <strong><%= t('document_forms_note') %></strong>: <br />
+  <%= @document_form.note  %>
+<% end %>
+
+<%= render 'shared/rel_fonds', :collection => @document_form.fonds %>
+
+<%= render 'shared/editors', :collection => @document_form.document_form_editors %>
+<%= permalink @document_form %>

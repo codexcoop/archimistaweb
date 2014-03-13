@@ -1,0 +1,12 @@
+<% if collection.present? %>
+  <h2><%= t('linked_creators')%></h2>
+  <ul>
+  <% collection.each do |creator| %>
+    <li>
+      (<%= creator.creator_association_type ? creator.creator_association_type.association_type : "qualifica non presente" %>)
+      <%= link_to creator.related_creator.preferred_name.name, creator_path(creator.related_creator) %>
+      <%= creator.related_creator.preferred_event.full_display_date if creator.related_creator.preferred_event %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>

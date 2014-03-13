@@ -1,0 +1,221 @@
+<title><%= @unit.name %></title>
+
+<h1>
+  <%= @unit.formatted_title %>
+  <span>(<%= @unit.preferred_event.try(:full_display_date) || 's.d.' %>)</span>
+</h1>
+
+
+<% if @unit.level_type.present? %>
+  <p>
+    <strong><%= t('level_type') %></strong>:
+    <%= show_value(@unit.level_type) %>
+  </p>
+<% end %>
+    
+<% if @unit.unit_type.present? %>
+  <p>
+    <strong><%= t('unit_type') %></strong>:
+    <%= show_value(@unit.unit_type) %>
+  </p>
+<% end %>
+
+<% if @unit.reference_number.present? %>
+  <p>
+    <strong><%= t('reference_number') %></strong>:
+    <%= show_value(@unit.reference_number) %>
+  </p>
+<% end %>
+
+<% if @unit.content.present? %>
+  <p>
+    <strong><%= t('content') %></strong>:
+    <%= show_value(raw textilize(@unit.content)) %>
+  </p>
+<% end %>
+
+<% if @unit.arrangement_note.present? %>
+  <p>
+    <strong><%= t('arrangement_note') %></strong>:
+    <%= show_value(raw textilize(@unit.arrangement_note)) %>
+  </p>
+<% end %>
+
+<% if @unit.physical_type.present? %>
+  <p>
+    <strong><%= t('physical_type') %></strong>:
+    <%= show_value(@unit.physical_type) %>
+  </p>
+<% end %>
+
+<% if @unit.medium.present? %>
+  <p>
+    <strong><%= t('medium') %></strong>:
+    <%= show_value(@unit.medium) %>
+  </p>
+<% end %>
+
+<% if @unit.related_materials.present? %>
+  <p>
+    <strong><%= t('related_materials') %></strong>:
+    <%= show_value(raw textilize(@unit.related_materials)) %>
+  </p>
+<% end %>
+
+<% if @unit.physical_container_type.present? || @unit.physical_container_title.present? || @unit.physical_container_number.present? %>
+      <p>
+        <strong><%= t('physical_container') %></strong>:
+          <% if @unit.physical_container_type.present? %>
+            <%= t('physical_container_type') %>:
+            <%= raw show_item(@unit.physical_container_type, ["", "<br />"]) %>
+          <% end %>
+      
+          <% if @unit.physical_container_title.present? %>
+            <%= t('physical_container_title') %>:
+            <%= raw show_item(@unit.physical_container_title, ["", "<br />"]) %>
+          <% end %>
+      
+          <% if @unit.physical_container_number.present? %>
+            <%= t('physical_container_number') %>:
+            <%= raw show_value(@unit.physical_container_number) %>
+          <% end %>
+      </p>
+<% end %>
+
+<% if @unit.physical_description.present? %>
+  <p>
+    <strong><%= t('physical_description') %></strong>:
+    <%= show_value(raw textilize(@unit.physical_description)) %>
+  </p>
+<% end %> 
+
+<% if @unit.preservation.present? %>
+  <p>
+    <strong><%= t('preservation') %></strong>:
+    <%= show_value(@unit.preservation) %>
+  </p>
+<% end %>
+
+<% if @unit.preservation_note.present? %>
+  <p>
+    <strong><%= t('preservation_note') %></strong>:
+    <%= show_value(raw textilize(@unit.preservation_note)) %>
+  </p>
+<% end %>
+
+<% if @unit.unit_damages.present? %>
+  <p>
+    <strong><%= t('unit_damages') %></strong>:
+    <ul>
+      <% @unit.unit_damages.each do |damage| %>
+        <li><%= show_item(t(damage.code)) %></li>
+      <% end %>
+    </ul>
+  </p>
+<% end %>
+
+<% if @unit.restoration.present? %>
+  <p>
+    <strong><%= t('restoration') %></strong>:
+    <%= show_value(raw textilize(@unit.restoration)) %>
+  </p>
+<% end %>
+
+<% if @unit.unit_other_reference_numbers.present? %>
+  <p>
+  <strong><%= t('unit_other_reference_numbers')%></strong>:
+    <ul>
+    <% @unit.unit_other_reference_numbers.each do |iorn_name| %>
+      <li>
+        <%= iorn_name.other_reference_number %>
+        <%= "(" + iorn_name.qualifier + ")" if iorn_name.qualifier.present? %> 
+        <%= "| " + t('note') + ": " + iorn_name.note if iorn_name.note.present? %>
+      </li>
+    <% end %>
+    </ul>
+  </p>
+<% end %>
+
+<% if @unit.unit_langs.present? %>
+  <p>
+    <strong><%= t('unit_langs')%></strong>:
+    <ul>
+      <% @unit.unit_langs.each do |lang| %>
+        <li><%= show_item(lang.code) %></li>
+      <% end %>
+    </ul>
+  </p>
+<% end %>
+
+<% if @unit.access_condition.present? %>
+  <p>
+    <strong><%= t('access_condition') %></strong>:
+    <%= show_value(@unit.access_condition) %>
+    </p>
+<% end %>
+
+<% if @unit.access_condition_note.present? %>
+  <p>
+    <strong><%= t('access_condition_note') %></strong>:
+    <%= show_value(raw textilize(@unit.access_condition_note)) %>
+  </p>
+<% end %>
+
+<% if @unit.use_condition.present? %>
+  <p>
+    <strong><%= t('use_condition') %></strong>:
+    <%= show_value(@unit.use_condition) %>
+  </p>
+<% end %>
+
+<% if @unit.use_condition_note.present? %>
+  <p>
+    <strong><%= t('use_condition_note') %></strong>:
+    <%= show_value(raw textilize(@unit.use_condition_note)) %>
+  </p>
+<% end %>
+
+<% if @unit.unit_urls.present? %>
+  <p>
+    <strong><%= t('unit_urls')%></strong>:
+    <ul>
+      <% @unit.unit_urls.each do |u_name| %>
+        <li><%= show_item(u_name.url) %> <%= show_item(u_name.note, ["[","]"]) %></li>
+      <% end %>
+    </ul>
+  </p>
+<% end %>
+
+<% if @unit.unit_identifiers.present? %>
+<p>
+  <strong><%= t('unit_identifiers')%></strong>:
+  <ul>
+    <% @unit.unit_identifiers.each do |fi_name| %>
+      <li>
+      <%= show_item(fi_name.identifier) %>
+      <%= show_item(fi_name.identifier_source, ["(",")"]) %> 
+      <%= show_item(fi_name.note, ["[","]"]) %>
+      </li>
+    <% end %>
+  </ul>
+</p>
+<% end %>
+
+<%= render "shared/sources", :collection => @unit.sources %>
+<%= render 'shared/editors', :collection => @unit.unit_editors %>
+
+
+<% if @unit.first_digital_object.present? %>
+<ul class='thumbnails'>
+  <li class='span4'>
+    <div class='thumbnail'>
+    <%= link_to image_tag(@unit.first_digital_object.asset(:thumb), :title => @unit.first_digital_object.title), '#', :class => 'thumbnail', :id => 'popup-gallery' %>
+    <p><%= @unit.digital_objects.size %> immagini</p>
+    </div>
+  </li>
+</ul>
+<% end %>
+
+<%= permalink @unit %>
+
+<%= render "units/magnific-popup", :object => @unit %>

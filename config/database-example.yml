@@ -1,0 +1,16 @@
+# Example database configuration
+#
+# 1. Create a configuration file: config/database.yml
+# 2. Configure your MySQL database
+# For more information read: http://guides.rubyonrails.org/v3.2.13/getting_started.html#configuring-a-database
+#
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: dbname
+  pool: 5
+  username: username
+  password: password
+  socket: /tmp/mysql.sock
+

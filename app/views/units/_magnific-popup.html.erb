@@ -1,0 +1,45 @@
+<%
+  items = [];
+  @unit.digital_objects.each do |dob|
+    object = {}
+    object['src'] = dob.asset(:large)
+    title = dob.title.blank? ? "" : dob.title
+    object['title'] = title
+    items << object
+  end
+%>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    function init_gallery() {
+      $('#popup-gallery').magnificPopup({
+        items: <%= items.to_json.html_safe %>,
+        type: 'image',
+        fixedContentPos: 'true',
+        overflowY: 'scroll',
+        mainClass: 'mfp-img-mobile',
+        gallery: {
+          enabled: true,
+          preload: [0, 1], // Will preload 0 - before current, and 1 after the current image
+          tCounter: '%curr% / %total%'
+        },
+        image: {
+          verticalFit: false,
+        }
+      });
+    }
+
+    if ($('#popup-gallery').length) {
+      init_gallery();
+    }
+
+    $('#units-wrapper').on('pjax:end', function() {
+      if ($('#popup-gallery').length) {
+        init_gallery();
+      }
+    });
+
+  });
+</script>
+

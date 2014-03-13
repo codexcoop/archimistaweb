@@ -1,0 +1,8 @@
+<% if collection.present? %>
+  <h2><%= t('editors') %></h2>
+  <ul>
+  <% collection.each do |editor| %>
+    <li><%= raw show_editor(editor) %></li>
+  <% end %>
+  </ul>
+<% end %>

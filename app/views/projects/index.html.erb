@@ -1,0 +1,25 @@
+<% title t('projects') %>
+
+<h1><%= t('projects') %></h1>
+<% if @projects.size > 0 %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="span6"><%= t('name') %></th>
+        <th class="span2"><%= t('duration') %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @projects.each do |project| %>
+      <tr class="<%= cycle("odd", "even") %>">
+        <td><%= link_to "#{project.name}", project %></td>
+        <td><%= project.display_date %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= bs_paginate @projects %>
+<% else %>
+  <p>Non sono presenti schede progetto.</p>
+<% end %>
+

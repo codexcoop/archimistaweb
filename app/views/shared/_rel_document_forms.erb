@@ -1,0 +1,10 @@
+<% if collection.present? %>
+  <h2><%= t('document_forms') %></h2>
+  <ul>
+  <% collection.each do |document_forms| %>
+    <li>
+      <%= link_to "#{document_form.name}", document_form_path(document_form) %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>

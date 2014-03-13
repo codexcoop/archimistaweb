@@ -1,0 +1,28 @@
+<% title t('creators') %>
+
+<h1><%= t('creators') %></h1>
+<% if @creators.size > 0 %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= t('creator_name') %></th>
+        <th><%= t('creator_type') %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @creators.each do |creator| %>
+      <tr>
+        <td>
+          <%= creator.residence + ", " if creator.residence.present? %>
+          <%= link_to creator.name, creator %>
+          <%= creator.preferred_event.try(:full_display_date) %>
+        </td>
+        <td><%= creator.full_creator_type %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= bs_paginate @creators %>
+<% else %>
+  <p>Non sono presenti schede soggetto produttore.</p>
+<% end %>

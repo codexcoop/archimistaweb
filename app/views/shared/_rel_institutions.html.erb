@@ -1,0 +1,8 @@
+<% if collection.present? %>
+  <h2><%= t('institutions') %></h2>
+  <ul>
+  <% collection.each do |institution| %>
+    <li><%= link_to "#{institution.name}", institution_path(institution) %></li>
+  <% end %>
+  </ul>
+<% end %>
