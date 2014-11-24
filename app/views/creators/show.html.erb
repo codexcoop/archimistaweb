@@ -6,7 +6,7 @@
 </h1>
 
 <p>
-  <strong><%= t('creator_type') %></strong>: <%= show_value(@creator.creator_type, "t") %>
+  <strong><%= t('creator_type') %></strong>: <%= t(@creator.creator_type) %>
 </p>
 
 <% if @creator.is_corporate? %>
@@ -51,7 +51,7 @@
   <% end %>
 
   <% if @creator.residence.present? %>
-    <p><strong><%= t('residence') %></strong>: <%= show_value(@creator.residence) %></p>
+    <p><strong><%= t('residence') %></strong>: <%= @creator.residence %></p>
   <% end %>
 <% end %>
 
@@ -84,14 +84,14 @@
 <% if @creator.abstract.present? %>
 <p>
   <strong><%= t('abstract') %></strong><br>
-  <%= show_value(raw textilize(@creator.abstract)) %>
+  <%= raw textilize(@creator.abstract) %>
 </p>
 <% end %>
 
 <% if @creator.history.present? %>
 <p>
   <strong><%= t('history') %></strong><br>
-  <%= show_value(raw textilize(@creator.history)) %>
+  <%= raw textilize(@creator.history) %>
 </p>
 <% end %>
 

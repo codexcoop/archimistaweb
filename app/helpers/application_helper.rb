@@ -24,20 +24,6 @@ module ApplicationHelper
     end
   end
 
-  def blank_field
-    s = '<span class="blank">' + t('blank_field') + '</span>'
-    s.html_safe
-  end
-
-  # OPTIMIZE: se ne può fare a meno
-  def show_value(value, options={})
-    if value.present?
-      options == "t" ? t(value) : value
-    else
-      blank_field.html_safe
-    end
-  end
-
   # Enforce the textilize method:
   # - do not convert square brackets, minus and plus signs
   # - unescape the entities for special characters that have been escaped by RedCloth

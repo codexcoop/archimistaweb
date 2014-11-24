@@ -5,7 +5,7 @@
 <% if @custodian.legal_status.present? %>
 <p>
   <strong><%= t('legal_status')%></strong>:
-  <%= show_value(@custodian.legal_status, "t") %>
+  <%= t(@custodian.legal_status) %>
 </p>
 <% end %>
 
@@ -34,7 +34,7 @@
 <% if @custodian.history.present? %>
 <p>
   <strong><%= t('custodian_history') %></strong>:
-  <%= show_value(raw textilize(@custodian.history)) %>
+  <%= raw textilize(@custodian.history) %>
 </p>
 <% end %>
 
@@ -45,10 +45,10 @@
       <% @custodian.custodian_contacts.each do |custodian_contacts| %>
       <li>
         <% if custodian_contacts.contact_type == 'email' %>
-           <%= show_value(custodian_contacts.contact_type, "t") %>:
-          <%= link_to show_item(custodian_contacts.contact), 'mailto:' + show_item(custodian_contacts.contact) %>
+          <%= t(custodian_contacts.contact_type) %>:
+          <%= mail_to(custodian_contacts.contact) %>
         <% else %>
-          <%= show_value(custodian_contacts.contact_type, "t") %>:
+          <%= t(custodian_contacts.contact_type) %>:
           <%= show_item(custodian_contacts.contact) %>
           <%= show_item(custodian_contacts.contact_note, ["[","]"]) %>
         <% end %>
@@ -61,7 +61,7 @@
 <% if @custodian.contact_person.present? %>
 <p>
   <strong><%= t('contact_person') %></strong>:
-  <%= show_value(@custodian.contact_person) %>
+  <%= @custodian.contact_person %>
 </p>
 <% end %>
 
@@ -105,35 +105,35 @@
 <% if @custodian.holdings.present? %>
 <p>
    <strong><%= t('holdings') %></strong>:
-   <%= show_value(raw textilize(@custodian.holdings)) %>
+   <%= raw textilize(@custodian.holdings) %>
 </p>
 <% end %>
 
 <% if @custodian.collecting_policies.present? %>
 <p>
   <strong><%= t('collecting_policies') %></strong>:
-  <%= show_value(raw textilize(@custodian.collecting_policies)) %>
+  <%= raw textilize(@custodian.collecting_policies) %>
 </p>
 <% end %>
 
 <% if @custodian.administrative_structure.present? %>
 <p>
   <strong><%= t('administrative_structure') %></strong>:
-  <%= show_value(raw textilize(@custodian.administrative_structure)) %>
+  <%= raw textilize(@custodian.administrative_structure) %>
 </p>
 <% end %>
 
 <% if @custodian.accessibility.present? %>
 <p>
   <strong><%= t('accessibility') %></strong>:
-  <%= show_value(raw textilize(@custodian.accessibility)) %>
+  <%= raw textilize(@custodian.accessibility) %>
 </p>
 <% end %>
 
 <% if @custodian.services.present? %>
 <p>
   <strong><%= t('services') %></strong>:
-  <%= show_value(raw textilize(@custodian.services)) %>
+  <%= raw textilize(@custodian.services) %>
 </p>
 <% end %>
 
@@ -145,7 +145,7 @@
   <%= raw show_item(custodian_building.custodian_building_type.capitalize, ["<strong>", "</strong> <br>"]) %>
 
   <% if custodian_building.description.present? %>
-    <%= show_value(raw textilize(custodian_building.description)) %>
+    <%= raw textilize(custodian_building.description) %>
   <% end %>
 
   <strong><%= t('address') %></strong>:<br>

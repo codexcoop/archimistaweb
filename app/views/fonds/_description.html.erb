@@ -13,7 +13,7 @@
 
 <% if @fond.fond_type.present? %>
 <p>
-  <em><%= show_value(@fond.fond_type.titleize) %></em>
+  <em><%= @fond.fond_type.titleize %></em>
 </p>
 <% end %>
 
@@ -31,14 +31,14 @@
 <% if @fond.length.present? %>
 <p>
   <strong><%= t('length') %></strong>:
-  <%= show_value(@fond.length) %>
+  <%= @fond.length %>
 </p>
 <% end %>
 
 <% if @fond.extent.present? %>
 <p>
   <strong><%= t('extent') %></strong>:
-  <%= show_value(@fond.extent) %>
+  <%= @fond.extent %>
 </p>
 <% end %>
 
@@ -46,28 +46,26 @@
   <% if @fond.abstract.present? %>
     <p>
       <strong><%= t('abstract') %></strong>:
-      <%= show_value(raw textilize(@fond.abstract)) %>
+      <%= raw textilize(@fond.abstract) %>
     </p>
   <% end %>
 <% end %>
 
 <% if @fond.description.present? %>
-<p>
-  <%= show_value(raw textilize_with_entities(@fond.description)) %>
-</p>
+  <p><%= raw textilize_with_entities(@fond.description) %></p>
 <% end %>
 
 <% if @fond.history.present? %>
   <p>
     <strong><%= t('history') %></strong>:
-    <%= show_value(raw textilize(@fond.history)) %>
+    <%= raw textilize(@fond.history) %>
   </p>
 <% end %>
 
 <% if @fond.arrangement_note.present? %>
 <p>
   <strong><%= t('arrangement_note') %></strong>:
-  <%= show_value(raw textilize(@fond.arrangement_note)) %>
+  <%= raw textilize(@fond.arrangement_note) %>
 </p>
 <% end %>
 
@@ -96,7 +94,7 @@
 <% if @fond.related_materials.present? %>
 <p>
   <strong><%= t('related_materials') %></strong>:
-  <%= show_value(raw textilize(@fond.related_materials)) %>
+  <%= raw textilize(@fond.related_materials) %>
 </p>
 <% end %>
 
@@ -129,42 +127,42 @@
 <% if @fond.access_condition.present? %>
 <p>
   <strong><%= t('access_condition') %></strong>:
-  <%= show_value(raw textilize(@fond.access_condition)) %>
+  <%= raw textilize(@fond.access_condition) %>
 </p>
 <% end %>
 
 <% if @fond.access_condition_note.present? %>
 <p>
   <strong><%= t('access_condition_note') %></strong>:
-  <%= show_value(raw textilize(@fond.access_condition_note)) %>
+  <%= raw textilize(@fond.access_condition_note) %>
 </p>
 <% end %>
 
 <% if @fond.use_condition.present? %>
 <p>
   <strong><%= t('use_condition')%></strong>:
-  <%= show_value(raw textilize(@fond.use_condition)) %>
+  <%= raw textilize(@fond.use_condition) %>
 </p>
 <% end %>
 
 <% if @fond.use_condition_note.present? %>
 <p>
   <strong><%= t('use_condition_note')%></strong>:
-  <%= show_value(raw textilize(@fond.use_condition_note)) %>
+  <%= raw textilize(@fond.use_condition_note) %>
 </p>
 <% end %>
 
 <% if @fond.preservation.present? %>
 <p>
   <strong><%= t('preservation') %></strong>:
-  <%= show_value(raw textilize(@fond.preservation)) %>
+  <%= raw textilize(@fond.preservation) %>
 </p>
 <% end %>
 
 <% if @fond.preservation_note.present? %>
 <p>
   <strong><%= t('preservation_note')%></strong>:
-  <%= show_value(raw textilize(@fond.preservation_note)) %>
+  <%= raw textilize(@fond.preservation_note) %>
 </p>
 <% end %>
 

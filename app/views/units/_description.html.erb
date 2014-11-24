@@ -8,55 +8,55 @@
 
 <% if @unit.level_type.present? %>
   <p>
-    <em><%= show_value(@unit.level_type) %></em>
+    <em><%= @unit.level_type %></em>
   </p>
 <% end %>
 
 <% if @unit.unit_type.present? %>
   <p>
     <strong><%= t('unit_type') %></strong>:
-    <%= show_value(@unit.unit_type) %>
+    <%= @unit.unit_type %>
   </p>
 <% end %>
 
 <% if @unit.reference_number.present? %>
   <p>
     <strong><%= t('reference_number') %></strong>:
-    <%= show_value(@unit.reference_number) %>
+    <%= @unit.reference_number %>
   </p>
 <% end %>
 
 <% if @unit.content.present? %>
   <p>
-    <%= show_value(raw textilize(@unit.content)) %>
+    <%= raw textilize(@unit.content) %>
   </p>
 <% end %>
 
 <% if @unit.arrangement_note.present? %>
   <p>
     <strong><%= t('arrangement_note') %></strong>:
-    <%= show_value(raw textilize(@unit.arrangement_note)) %>
+    <%= raw textilize(@unit.arrangement_note) %>
   </p>
 <% end %>
 
 <% if @unit.physical_type.present? %>
   <p>
     <strong><%= t('physical_type') %></strong>:
-    <%= show_value(@unit.physical_type) %>
+    <%= @unit.physical_type %>
   </p>
 <% end %>
 
 <% if @unit.medium.present? %>
   <p>
     <strong><%= t('medium') %></strong>:
-    <%= show_value(@unit.medium) %>
+    <%= @unit.medium %>
   </p>
 <% end %>
 
 <% if @unit.related_materials.present? %>
   <p>
     <strong><%= t('related_materials') %></strong>:
-    <%= show_value(raw textilize(@unit.related_materials)) %>
+    <%= raw textilize(@unit.related_materials) %>
   </p>
 <% end %>
 
@@ -75,7 +75,7 @@
 
           <% if @unit.physical_container_number.present? %>
             <%= t('physical_container_number') %>:
-            <%= raw show_value(@unit.physical_container_number) %>
+            <%= raw @unit.physical_container_number %>
           <% end %>
       </p>
 <% end %>
@@ -83,21 +83,21 @@
 <% if @unit.physical_description.present? %>
   <p>
     <strong><%= t('physical_description') %></strong>:
-    <%= show_value(raw textilize(@unit.physical_description)) %>
+    <%= raw textilize(@unit.physical_description) %>
   </p>
 <% end %>
 
 <% if @unit.preservation.present? %>
   <p>
     <strong><%= t('preservation') %></strong>:
-    <%= show_value(@unit.preservation) %>
+    <%= @unit.preservation %>
   </p>
 <% end %>
 
 <% if @unit.preservation_note.present? %>
   <p>
     <strong><%= t('preservation_note') %></strong>:
-    <%= show_value(raw textilize(@unit.preservation_note)) %>
+    <%= raw textilize(@unit.preservation_note) %>
   </p>
 <% end %>
 
@@ -115,7 +115,7 @@
 <% if @unit.restoration.present? %>
   <p>
     <strong><%= t('restoration') %></strong>:
-    <%= show_value(raw textilize(@unit.restoration)) %>
+    <%= raw textilize(@unit.restoration) %>
   </p>
 <% end %>
 
@@ -148,28 +148,28 @@
 <% if @unit.access_condition.present? %>
   <p>
     <strong><%= t('access_condition') %></strong>:
-    <%= show_value(@unit.access_condition) %>
-    </p>
+    <%= @unit.access_condition %>
+  </p>
 <% end %>
 
 <% if @unit.access_condition_note.present? %>
   <p>
     <strong><%= t('access_condition_note') %></strong>:
-    <%= show_value(raw textilize(@unit.access_condition_note)) %>
+    <%= raw textilize(@unit.access_condition_note) %>
   </p>
 <% end %>
 
 <% if @unit.use_condition.present? %>
   <p>
     <strong><%= t('use_condition') %></strong>:
-    <%= show_value(@unit.use_condition) %>
+    <%= @unit.use_condition %>
   </p>
 <% end %>
 
 <% if @unit.use_condition_note.present? %>
   <p>
     <strong><%= t('use_condition_note') %></strong>:
-    <%= show_value(raw textilize(@unit.use_condition_note)) %>
+    <%= raw textilize(@unit.use_condition_note) %>
   </p>
 <% end %>
 
@@ -201,7 +201,6 @@
 
 <%= render "shared/sources", :collection => @unit.sources %>
 <%= render 'shared/editors', :collection => @unit.unit_editors %>
-
 
 <% if @unit.first_digital_object.present? %>
 <ul class='thumbnails'>
