@@ -8,11 +8,10 @@
 
 <% if @unit.level_type.present? %>
   <p>
-    <strong><%= t('level_type') %></strong>:
-    <%= show_value(@unit.level_type) %>
+    <em><%= show_value(@unit.level_type) %></em>
   </p>
 <% end %>
-    
+
 <% if @unit.unit_type.present? %>
   <p>
     <strong><%= t('unit_type') %></strong>:
@@ -29,7 +28,6 @@
 
 <% if @unit.content.present? %>
   <p>
-    <strong><%= t('content') %></strong>:
     <%= show_value(raw textilize(@unit.content)) %>
   </p>
 <% end %>
@@ -69,12 +67,12 @@
             <%= t('physical_container_type') %>:
             <%= raw show_item(@unit.physical_container_type, ["", "<br />"]) %>
           <% end %>
-      
+
           <% if @unit.physical_container_title.present? %>
             <%= t('physical_container_title') %>:
             <%= raw show_item(@unit.physical_container_title, ["", "<br />"]) %>
           <% end %>
-      
+
           <% if @unit.physical_container_number.present? %>
             <%= t('physical_container_number') %>:
             <%= raw show_value(@unit.physical_container_number) %>
@@ -87,7 +85,7 @@
     <strong><%= t('physical_description') %></strong>:
     <%= show_value(raw textilize(@unit.physical_description)) %>
   </p>
-<% end %> 
+<% end %>
 
 <% if @unit.preservation.present? %>
   <p>
@@ -128,7 +126,7 @@
     <% @unit.unit_other_reference_numbers.each do |iorn_name| %>
       <li>
         <%= iorn_name.other_reference_number %>
-        <%= "(" + iorn_name.qualifier + ")" if iorn_name.qualifier.present? %> 
+        <%= "(" + iorn_name.qualifier + ")" if iorn_name.qualifier.present? %>
         <%= "| " + t('note') + ": " + iorn_name.note if iorn_name.note.present? %>
       </li>
     <% end %>
@@ -193,7 +191,7 @@
     <% @unit.unit_identifiers.each do |fi_name| %>
       <li>
       <%= show_item(fi_name.identifier) %>
-      <%= show_item(fi_name.identifier_source, ["(",")"]) %> 
+      <%= show_item(fi_name.identifier_source, ["(",")"]) %>
       <%= show_item(fi_name.note, ["[","]"]) %>
       </li>
     <% end %>

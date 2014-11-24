@@ -13,11 +13,9 @@
 
 <% if @fond.fond_type.present? %>
 <p>
-  <strong><%= t('fond_type') %></strong>: 
-  <%= show_value(@fond.fond_type) %>
+  <em><%= show_value(@fond.fond_type.titleize) %></em>
 </p>
 <% end %>
-
 
 <% if @fond.other_names.present? %>
 <p>
@@ -32,53 +30,50 @@
 
 <% if @fond.length.present? %>
 <p>
-  <strong><%= t('length') %></strong>: 
+  <strong><%= t('length') %></strong>:
   <%= show_value(@fond.length) %>
 </p>
 <% end %>
-    
+
 <% if @fond.extent.present? %>
 <p>
-  <strong><%= t('extent') %></strong>: 
+  <strong><%= t('extent') %></strong>:
   <%= show_value(@fond.extent) %>
 </p>
 <% end %>
-    
+
 <% if @fond.is_root? %>
   <% if @fond.abstract.present? %>
     <p>
-      <strong><%= t('abstract') %></strong>: 
+      <strong><%= t('abstract') %></strong>:
       <%= show_value(raw textilize(@fond.abstract)) %>
     </p>
   <% end %>
 <% end %>
-    
+
 <% if @fond.description.present? %>
 <p>
-  <strong><%= t('fond_description') %></strong>: 
   <%= show_value(raw textilize_with_entities(@fond.description)) %>
 </p>
 <% end %>
-    
+
 <% if @fond.history.present? %>
   <p>
-    <strong><%= t('history') %></strong>: 
+    <strong><%= t('history') %></strong>:
     <%= show_value(raw textilize(@fond.history)) %>
   </p>
 <% end %>
 
 <% if @fond.arrangement_note.present? %>
 <p>
-  <strong><%= t('arrangement_note') %></strong>: 
+  <strong><%= t('arrangement_note') %></strong>:
   <%= show_value(raw textilize(@fond.arrangement_note)) %>
 </p>
 <% end %>
-    
-
 
 <% if @fond.fond_langs.present? %>
 <p>
-  <strong><%= t('fond_langs')%></strong>: 
+  <strong><%= t('fond_langs')%></strong>:
   <ul>
   <% @fond.fond_langs.each do |fl_name| %>
     <li><%= fl_name.code %></li>
@@ -86,7 +81,7 @@
   </ul>
 </p>
 <% end %>
-    
+
 <% if @fond.fond_owners.present? %>
 <p>
   <strong><%= t('fond_owners')%></strong>:
@@ -97,17 +92,17 @@
   </ul>
 </p>
 <% end %>
-    
+
 <% if @fond.related_materials.present? %>
 <p>
-  <strong><%= t('related_materials') %></strong>: 
+  <strong><%= t('related_materials') %></strong>:
   <%= show_value(raw textilize(@fond.related_materials)) %>
 </p>
 <% end %>
 
 <% if @fond.fond_urls.present? %>
 <p>
-  <strong><%= t('fond_urls')%></strong>: 
+  <strong><%= t('fond_urls')%></strong>:
   <ul>
     <% @fond.fond_urls.each do |fu_name| %>
       <li><%= fu_name.url %> (<%= fu_name.note %>)</li>
@@ -115,10 +110,10 @@
   </ul>
 </p>
 <% end %>
-    
+
 <% if @fond.fond_identifiers.present? %>
 <p>
-  <strong><%= t('fond_identifiers')%></strong>: 
+  <strong><%= t('fond_identifiers')%></strong>:
   <ul>
     <% @fond.fond_identifiers.each do |fi_name| %>
       <li>
@@ -130,45 +125,45 @@
   </ul>
 </p>
 <% end %>
-  
+
 <% if @fond.access_condition.present? %>
 <p>
-  <strong><%= t('access_condition') %></strong>: 
+  <strong><%= t('access_condition') %></strong>:
   <%= show_value(raw textilize(@fond.access_condition)) %>
 </p>
 <% end %>
 
 <% if @fond.access_condition_note.present? %>
 <p>
-  <strong><%= t('access_condition_note') %></strong>: 
+  <strong><%= t('access_condition_note') %></strong>:
   <%= show_value(raw textilize(@fond.access_condition_note)) %>
 </p>
 <% end %>
-    
+
 <% if @fond.use_condition.present? %>
 <p>
-  <strong><%= t('use_condition')%></strong>: 
+  <strong><%= t('use_condition')%></strong>:
   <%= show_value(raw textilize(@fond.use_condition)) %>
 </p>
 <% end %>
-    
+
 <% if @fond.use_condition_note.present? %>
 <p>
-  <strong><%= t('use_condition_note')%></strong>: 
+  <strong><%= t('use_condition_note')%></strong>:
   <%= show_value(raw textilize(@fond.use_condition_note)) %>
 </p>
 <% end %>
 
 <% if @fond.preservation.present? %>
 <p>
-  <strong><%= t('preservation') %></strong>: 
+  <strong><%= t('preservation') %></strong>:
   <%= show_value(raw textilize(@fond.preservation)) %>
 </p>
 <% end %>
-  
+
 <% if @fond.preservation_note.present? %>
 <p>
-  <strong><%= t('preservation_note')%></strong>: 
+  <strong><%= t('preservation_note')%></strong>:
   <%= show_value(raw textilize(@fond.preservation_note)) %>
 </p>
 <% end %>

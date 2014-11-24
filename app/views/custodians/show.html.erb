@@ -11,7 +11,7 @@
 
 <% if @custodian.custodian_type.present? %>
 <p>
-  <strong><%= t('custodian_macro_type') %></strong>:  
+  <strong><%= t('custodian_macro_type') %></strong>:
   <%= @custodian.custodian_type.custodian_type.capitalize %>
 </p>
 <% end %>
@@ -45,7 +45,7 @@
       <% @custodian.custodian_contacts.each do |custodian_contacts| %>
       <li>
         <% if custodian_contacts.contact_type == 'email' %>
-           <%= show_value(custodian_contacts.contact_type, "t") %>: 
+           <%= show_value(custodian_contacts.contact_type, "t") %>:
           <%= link_to show_item(custodian_contacts.contact), 'mailto:' + show_item(custodian_contacts.contact) %>
         <% else %>
           <%= show_value(custodian_contacts.contact_type, "t") %>:
@@ -130,7 +130,7 @@
 </p>
 <% end %>
 
-<% if @custodian.services.present? %> 
+<% if @custodian.services.present? %>
 <p>
   <strong><%= t('services') %></strong>:
   <%= show_value(raw textilize(@custodian.services)) %>
@@ -139,15 +139,15 @@
 
 <h2 class="section"><%= t('buildings') %></h2>
 
-<% if @custodian.custodian_buildings.present? %> 
+<% if @custodian.custodian_buildings.present? %>
   <% @custodian.custodian_buildings.each do |custodian_building| %>
   <p>
   <%= raw show_item(custodian_building.custodian_building_type.capitalize, ["<strong>", "</strong> <br>"]) %>
-  
+
   <% if custodian_building.description.present? %>
     <%= show_value(raw textilize(custodian_building.description)) %>
   <% end %>
-  
+
   <strong><%= t('address') %></strong>:<br>
   <%= raw show_item(custodian_building.name, ["", "<br>"]) %>
   <%= raw show_item(custodian_building.address, ["", "<br>"]) %>

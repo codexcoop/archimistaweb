@@ -9,8 +9,6 @@
   <%= @institution.note  %>
 <% end %>
 
-<h2><%= t('rel_creators') %></h2>
-
 <%= render 'shared/rel_creators', :collection => @institution.creators %>
 <%= render 'shared/editors', :collection => @institution.institution_editors %>
 

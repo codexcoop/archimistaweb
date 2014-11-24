@@ -21,7 +21,7 @@
       <li><%= link_to fond.name, fond_path(fond) %></li>
       <% end %>
     </ul>
-    <p><small>Vedi tutti: <%= link_to "#{@fonds_count} #{t('fonds').downcase} »", fonds_path %></small></p>
+    <p><small>Vedi tutti: <%= link_to "#{number_with_delimiter(@fonds_count)} #{t('fonds').downcase} »", fonds_path %></small></p>
   </div>
   <div class="span4">
     <h2><%= t('creators') %></h2>
@@ -30,7 +30,7 @@
       <li><%= link_to creator.name, creator_path(creator) %></li>
       <% end %>
     </ul>
-    <p><small>Vedi tutti: <%= link_to "#{@creators_count} #{t('creators').downcase} »", creators_path %></small></p>
+    <p><small>Vedi tutti: <%= link_to "#{number_with_delimiter(@creators_count)} #{t('creators').downcase} »", creators_path %></small></p>
   </div>
   <div class="span4">
     <h2><%= t('custodians') %></h2>
