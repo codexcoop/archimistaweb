@@ -85,6 +85,8 @@ class Unit < ActiveRecord::Base
     given_title? ? "[#{title}]" : title
   end
 
+  scope :list, select("id, fond_id, sequence_number, ancestry_depth, reference_number, title, given_title").includes(:preferred_event)
+
   # Methods related to sequence_number
 
   # Returns a hash of all the units of the *root_fond*,
@@ -130,19 +132,6 @@ class Unit < ActiveRecord::Base
   def next_in_sequence
     self.class.find(:first, :select => "id",
       :conditions => "root_fond_id = #{root_fond_id} AND sequence_number = #{sequence_number+1}")
-  end
-
-  define_index do
-    # fields
-    indexes "LOWER(units.title)", :as => :display_name, :sortable => true
-    indexes "LOWER(content)", :as => :content
-    # attributes
-    has fond_id
-    has root_fond_id, :facet => true
-    has first_digital_object(:id), :as => :digital_object_id, :type => :integer
-    has preferred_event(:order_date), :as => :order_date
-    has "CAST(EXTRACT(YEAR FROM unit_events.start_date_from) AS UNSIGNED)", :type => :integer, :as => :start_year
-    has "CAST(EXTRACT(YEAR FROM unit_events.end_date_to) AS UNSIGNED)", :type => :integer, :as => :end_year
   end
 
 end

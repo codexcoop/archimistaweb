@@ -56,15 +56,5 @@ class Custodian < ActiveRecord::Base
     end
   end
 
-  define_index do
-    # fields
-    indexes preferred_name(:name), :as => :display_name, :sortable => true
-    # attributes
-    has first_digital_object(:id), :as => :digital_object_id, :type => :integer
-    has "NULL", :as => :order_date, :type => :string
-    has "CAST(EXTRACT(YEAR FROM '0000-00-00') AS UNSIGNED)", :type => :integer, :as => :start_year
-    has "CAST(EXTRACT(YEAR FROM CURRENT_DATE) AS UNSIGNED)", :type => :integer, :as => :end_year
-  end
-
 end
 

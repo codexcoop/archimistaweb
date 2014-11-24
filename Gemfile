@@ -1,31 +1,28 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '3.2.21'
 
-gem 'mysql2', '0.3.13'
+gem 'mysql2'
 gem 'json'
 
-gem 'acts_as_list', '~> 0.1.9'
-gem 'ancestry', '~> 1.2.5'
-gem 'paperclip', '2.7.2'
-gem 'cocaine', '0.3.2'
-gem 'rails_config', '~> 0.3.3'
-gem 'RedCloth', :require => 'redcloth'
-gem 'thinking-sphinx', '~> 2.1.0'
-gem 'will_paginate', '~> 3.0.5'
+gem 'acts_as_list', '~> 0.5.0'
+gem 'ancestry', '~> 2.1.0'
+gem 'paperclip', '~> 4.2.0'
+gem 'rails_config', '~> 0.4.2'
+gem 'RedCloth', '~> 4.2.9'
+gem 'thinking-sphinx', '~> 3.1.2'
+gem 'will_paginate', '~> 3.0.7'
 
-gem 'jquery-rails'
-gem 'pjax_rails', '0.4.0'
+gem 'jquery-rails', '~> 3.1.2'
+gem 'pjax_rails', '~> 0.4.0'
 
 group :assets do
-  gem 'uglifier', '~> 2.1.2'
-  gem 'less-rails'
-  gem 'twitter-bootstrap-rails', '~> 2.2.7'
-  gem 'execjs' # "manages compiling CoffeeScript (and more importantly minifying your JavaScript)"
-  gem 'therubyracer', '~> 0.12.0'
+  gem 'therubyracer', '~> 0.12.1'
+  gem 'less-rails', '~> 2.6.0'
+  gem 'twitter-bootstrap-rails', '~> 2.2.8'
+  gem 'uglifier', '~> 2.5.3'
 end
 
 group :development do
-  gem 'rails-footnotes', '>= 3.7.9'
-  gem 'ruby-debug', :require => false
+  gem 'rails-footnotes'
 end

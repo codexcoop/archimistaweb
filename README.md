@@ -6,9 +6,9 @@ Demo: [http://archimistaweb.codexcoop.it](http://archimistaweb.codexcoop.it)
 
 ## Requisiti
 
-* Ruby 1.8.7
-* Rails 3.2.13
-* Sphinx 2.0.x (motore di ricerca testuale)
+* Ruby 2.1.5
+* Rails 3.2.21
+* Sphinx 2.2.5 (motore di ricerca testuale)
 * Database Archimista 1.2.1 in MySQL >= 5.1
 * Webserver configurato per applicazioni Rails
 

@@ -21,15 +21,13 @@ module ActsAsSequence
                                     #{table_name}.trashed,
                                     #{table_name}.units_count".squish
 
-
     self.order_for_tree_options  = "#{table_name}.ancestry_depth,
                                     #{table_name}.ancestry,
                                     #{table_name}.position".squish
-    # Scopes
 
     scope :order_for_tree, order(order_for_tree_options)
-
     scope :select_for_tree, select(select_for_tree_options)
+    scope :active, where(:trashed => false)
 
   end
 

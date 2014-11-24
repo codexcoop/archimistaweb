@@ -18,30 +18,37 @@ class SearchController < ApplicationController
 
       scopes.delete_if {|x| x != params[:scope].camelize.constantize } if params[:scope].present?
 
-      params[:sort] ||= 'relevance'
-      order = params[:sort] == 'relevance' ? '@relevance DESC' : 'order_date ASC'
+      # TODO: completare aggiornamento del codice
+      # ==> http://pat.github.io/thinking-sphinx/upgrading.html
+
+      # FIXME: q.downcase non necessario + vedi Riddle::Query.escape
+
+      params[:sort] ||= 'weight'
+      order = params[:sort] == 'weight' ? 'weight() DESC' : 'order_date ASC'
 
       @results = ThinkingSphinx.search(params[:q].downcase,
         :with => with,
         :without => without,
-        :include => [:first_digital_object, :preferred_name, :preferred_event],
+        # FIXME: diminuire numero di query
+        # :sql => {:include => [:first_digital_object, :preferred_name, :preferred_event]},
+        :sql => {:include => :first_digital_object},
         :page => params[:page],
         :per_page => 20,
         :field_weights => {
           :display_name  => 5,
           :content => 3,
         },
-        :excerpts => true,
-        :excerpt_options => {
-          :before_match    => '<b>',
-          :after_match     => '</b>',
-          :chunk_separator => ' &#8230; ',
-          :limit_words => 100
-        },
-        :match_mode => :extended,
-        :sort_mode => :extended,
+        # # opzione non più esistente ?
+        # :excerpts => {
+        #  :limit_words => 100
+        # },
+        # :match_mode => :extended, # The match mode is always extended - SphinxQL doesn’t know any other way.
+        # # opzione non più esistente ?
+        # :sort_mode => :extended,
         :order => order,
         :classes => scopes)
+
+      @results.context[:panes] << ThinkingSphinx::Panes::ExcerptsPane
 
       if scopes.include?(Unit)
         @facets = Unit.facets(params[:q].downcase, :with => with.reject{|k, v| k == :root_fond_id}, :without => without)

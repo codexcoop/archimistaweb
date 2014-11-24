@@ -78,16 +78,5 @@ class Fond < ActiveRecord::Base
     path.from_depth(depth).all(:select => "id, name, ancestry")
   end
 
-  define_index do
-    # fields
-    indexes "LOWER(name)", :as => :display_name, :sortable => true
-    indexes "LOWER(fonds.description)", :as => :content
-    # attributes
-    has first_digital_object(:id), :as => :digital_object_id, :type => :integer
-    has preferred_event(:order_date), :as => :order_date
-    has "CAST(EXTRACT(YEAR FROM fond_events.start_date_from) AS UNSIGNED)", :type => :integer, :as => :start_year
-    has "CAST(EXTRACT(YEAR FROM fond_events.end_date_to) AS UNSIGNED)", :type => :integer, :as => :end_year
-  end
-
 end
 

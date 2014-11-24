@@ -1,7 +1,7 @@
 module SearchHelper
 
   def orders
-    ['relevance', 'order_date']
+    ['weight', 'order_date']
   end
 
   def switch_order(current)

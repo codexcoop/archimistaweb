@@ -1,7 +1,7 @@
 module Tree
 
   def fast_subtree_to_jstree_hash(prepared_subtree=nil)
-    prepared_subtree ||= subtree.select_for_tree.order_for_tree
+    prepared_subtree ||= subtree.select_for_tree.active.order_for_tree
 
     groups = break_groups_by_key(prepared_subtree,
       :key => 'ancestor_ids',

@@ -74,16 +74,5 @@ class Creator < ActiveRecord::Base
 
   alias_attribute :value, :name_with_preferred_date
 
-  define_index do
-    # fields
-    indexes preferred_name(:name), :as => :display_name, :sortable => true
-    indexes "LOWER(history)", :as => :content
-    # attributes
-    has first_digital_object(:id), :as => :digital_object_id, :type => :integer
-    has preferred_event(:order_date), :as => :order_date
-    has "CAST(EXTRACT(YEAR FROM creator_events.start_date_from) AS UNSIGNED)", :type => :integer, :as => :start_year
-    has "CAST(EXTRACT(YEAR FROM creator_events.end_date_to) AS UNSIGNED)", :type => :integer, :as => :end_year
-  end
-
 end
 

@@ -7,7 +7,7 @@ class FondsController < ApplicationController
 
   def show
     @fond = Fond.find(params[:id])
-    @units = @fond.units
+    @units = @fond.units.list
 
     if pjax_request?
       render :description, :layout => false

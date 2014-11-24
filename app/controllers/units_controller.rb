@@ -1,8 +1,8 @@
 class UnitsController < ApplicationController
 
   def index
-    @fond = Fond.find(params[:fond_id])
-    @units = Unit.where("fond_id = ?", params[:fond_id]).includes(:preferred_event)
+    @fond = Fond.select("id, name").find(params[:fond_id])
+    @units = @fond.units.list
     @sequence_numbers = Unit.display_sequence_numbers_of(@fond.root)
 
     if pjax_request?
@@ -26,14 +26,15 @@ class UnitsController < ApplicationController
       render :description, :layout => false
     else
       @fond = Fond.select("id, name").find(params[:fond_id])
-      @units = Unit.where("fond_id = ?", params[:fond_id])
+      @units = @fond.units.list
+      @sequence_numbers = Unit.display_sequence_numbers_of(@fond.root)
       render "shared/treeview"
     end
   end
 
   def list
-    @fond = Fond.find(params[:fond_id])
-    @units = @fond.units.select('id, ancestry_depth, sequence_number, fond_id, title, reference_number').includes(:preferred_event)
+    @fond = Fond.select("id, name").find(params[:fond_id])
+    @units = @fond.units.list
     @sequence_numbers = Unit.display_sequence_numbers_of(@fond.root)
     render :layout => false
   end
