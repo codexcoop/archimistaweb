@@ -26,9 +26,4 @@ module PaginationHelper
     will_paginate(pages, :class => 'pagination', :inner_window => 2, :outer_window => 0, :renderer => BootstrapLinkRenderer)
   end
 
-  def display_page_entries_info(collection)
-    parts = page_entries_info(collection).split("#")
-    string = [parts[0], number_with_delimiter(parts[1]), parts[2]].to_s.html_safe
-  end
-
 end

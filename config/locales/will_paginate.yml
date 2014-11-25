@@ -16,7 +16,7 @@ en:
         other: "Displaying <b>all&nbsp;%{count}</b> results"
 
       multi_page: "Displaying results %{from} - %{to} of %{count} in total"
-      multi_page_html: "Displaying results <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>#%{count}#</b> in total"
+      multi_page_html: "Displaying results <b>%{from}&nbsp;-&nbsp;%{to}</b> of <b>%{count}</b> in total"
 
 it:
   will_paginate:
@@ -35,5 +35,5 @@ it:
         other: "<b>%{count}</b> risultati"
 
       multi_page: "Risultati %{from} - %{to} di %{count} totali"
-      multi_page_html: "Risultati <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>#%{count}#</b> totali"
+      multi_page_html: "Risultati <b>%{from}&nbsp;-&nbsp;%{to}</b> di <b>%{count}</b> totali"
 

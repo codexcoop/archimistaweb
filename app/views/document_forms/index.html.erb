@@ -1,8 +1,8 @@
 <% title t('document_forms') %>
 
 <h1><%= t('document_forms') %></h1>
-
 <% if @document_forms.size > 0 %>
+  <%= page_entries_info @document_forms %>
   <table class="table table-striped">
     <thead>
       <tr>

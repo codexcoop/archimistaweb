@@ -2,6 +2,7 @@
 
 <h1><%= t('projects') %></h1>
 <% if @projects.size > 0 %>
+  <%= page_entries_info @projects %>
   <table class="table table-striped">
     <thead>
       <tr>

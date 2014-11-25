@@ -2,6 +2,7 @@
 
 <h1><%= t('custodians') %></h1>
 <% if @custodians.size > 0 %>
+  <%= page_entries_info @custodians %>
   <table class="table table-striped">
     <thead>
       <tr>
