@@ -2,7 +2,7 @@
   <h2><%= t('sources') %></h2>
   <ul>
   <% collection.each do |source| %>
-    <li><%= source.short_title %> = <%= formatted_source(source) %></li>
+    <li><%= source.short_title %> = <%= raw formatted_source(source) %></li>
   <% end %>
   </ul>
 <% end %>

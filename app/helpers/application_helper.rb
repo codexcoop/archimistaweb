@@ -55,13 +55,13 @@ module ApplicationHelper
 
   def formatted_source(source)
     if source.use_legacy?
-      h source.legacy_description.gsub(/<C>|<N>|<T>|<CR>/i, '')
+      source.legacy_description.gsub(/<C>|<N>|<T>|<CR>/i, '')
     else
       [
-        h(source.author),
-        (source.title.present? ? content_tag(:em, h(source.title)) : nil),
-        h(source.publisher),
-        h(source.date_string)
+        source.author,
+        (source.title.present? ? content_tag(:em, source.title) : nil),
+        source.publisher,
+        source.date_string
       ].
         delete_if{|fragment| fragment.blank?}.
         join(", ")
