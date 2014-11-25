@@ -16,7 +16,7 @@ class UnitsController < ApplicationController
     end
   end
 
-  # OPTIMIZE: forse la route potrebbe essere non nested => units/:id anziché fond/:fond_id/units/:id
+  # OPTIMIZE: forse la route potrebbe essere non nested => units/:id
   def show
     @unit = Unit.find(params[:id])
 
@@ -38,10 +38,5 @@ class UnitsController < ApplicationController
     @sequence_numbers = Unit.display_sequence_numbers_of(@fond.root)
     render :layout => false
   end
-
-  # def description
-  #  @unit = Unit.find(params[:id])
-  #  render :layout => false
-  # end
 
 end

@@ -27,10 +27,5 @@ class FondsController < ApplicationController
     end
   end
 
-  # def description
-  #  @fond = Fond.find(params[:id])
-  #  render :layout => false
-  # end
-
 end
 
