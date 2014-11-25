@@ -10,9 +10,9 @@ class FondsController < ApplicationController
     @units = @fond.units.list
 
     if pjax_request?
-      render :description, :layout => false
+      render :layout => false
     else
-      render "shared/treeview"
+      render :layout => "treeview"
     end
   end
 
@@ -27,10 +27,10 @@ class FondsController < ApplicationController
     end
   end
 
-  def description
-    @fond = Fond.find(params[:id])
-    render :layout => false
-  end
+  # def description
+  #  @fond = Fond.find(params[:id])
+  #  render :layout => false
+  # end
 
 end
 

@@ -7,12 +7,8 @@ Archiweb::Application.routes.draw do
   resources :fonds, :only => [:index, :show] do
     member do
       get 'tree'
-      get 'description'
     end
     resources :units, :only => [:index, :show] do
-      member do
-        get 'description'
-      end
       collection do
         get 'list'
       end

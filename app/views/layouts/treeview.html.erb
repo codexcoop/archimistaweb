@@ -1,5 +1,6 @@
 <% title @unit ? @unit.name : @fond.name %>
-<%# OPTIMIZE: se si può, treeview dovrebbe diventare layout %>
+
+<% content_for :content do %>
 <div class="row-fluid">
 <div id="treeview-content" class="span12">
   <div id="fonds-tree-wrapper" class="span3">
@@ -56,3 +57,6 @@
   </div>
 </div>
 </div>
+<% end %>
+
+<%= render :template => 'layouts/application' %>

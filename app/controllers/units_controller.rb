@@ -23,12 +23,12 @@ class UnitsController < ApplicationController
     raise ActiveRecord::RecordNotFound if @unit.fond_id.to_i != params[:fond_id].to_i
 
     if pjax_request?
-      render :description, :layout => false
+      render :layout => false
     else
       @fond = Fond.select("id, name").find(params[:fond_id])
       @units = @fond.units.list
       @sequence_numbers = Unit.display_sequence_numbers_of(@fond.root)
-      render "shared/treeview"
+      render :layout => "treeview"
     end
   end
 
@@ -39,9 +39,9 @@ class UnitsController < ApplicationController
     render :layout => false
   end
 
-  def description
-    @unit = Unit.find(params[:id])
-    render :layout => false
-  end
+  # def description
+  #  @unit = Unit.find(params[:id])
+  #  render :layout => false
+  # end
 
 end
