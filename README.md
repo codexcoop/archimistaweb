@@ -22,8 +22,8 @@ Installare le dipendenze Rails:
 
 Attivare il motore di ricerca testuale:
 
-    rake thinking_sphinx:configure
-    rake thinking_sphinx:rebuild
+    rake ts:configure
+    rake ts:rebuild
 
 ## Crediti
 
